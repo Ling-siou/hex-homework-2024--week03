@@ -1,0 +1,41 @@
+<div class="header container d-flex flex-sm-row flex-column">
+    <div class="header-logo-box d-flex align-items-center justify-content-between justify-sm-content-start">
+        <img src="./images/logo.svg" width="90" height="40" class="header-logo" alt="logo">
+        <div class="d-block d-sm-none">
+            <img id="header-icon-menu" style="display: block;" src="../images/icon-menu.svg" width="40" height="40" alt="">
+            <img id="header-icon-close" style="display: none;" src="../images/icon-close.svg" width="40" height="40" alt="">
+        </div>
+    </div>
+    <div class="nav-menu-outer">
+        <ul id="nav-menu" class="d-flex ul-reset header-nav flex-sm-row flex-column justify-content-center align-items-center">
+            <li><a class="nav-item" href="index.html">首頁</a></li>
+            <li><a class="nav-item" href="projects.html">作品集</a></li>
+            <li><a class="nav-item" href="serves.html">服務項目</a></li>
+            <li><a class="nav-item" href="blogs.html">部落格</a></li>
+            <li><a class="nav-item" href="connect.html">聯絡我</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    const urlPath = window.location.pathname.split("/");
+    const pathCount = urlPath.length - 1;
+    $('.header-nav li').map((e)=>{
+        const hrefName = $('.header-nav li')[e].children[0].getAttribute("href")
+        $('.header-nav li')[e].className = hrefName === urlPath[pathCount] ? 'active' : ''
+    })
+    $('#header-icon-menu').click(()=>{
+        $('body').addClass('menu-op')
+        $('.nav-menu-outer').addClass('on')
+        $('.nav-menu-outer.on ul').addClass('on')
+        $('#header-icon-menu').css('display', 'none')
+        $('#header-icon-close').css('display', 'block')
+    })
+    $('#header-icon-close').click(()=>{
+        $('body').removeClass('menu-op')
+        $('.nav-menu-outer').removeClass('on')
+        $('.nav-menu-outer.on ul').removeClass('on')
+        $('#header-icon-menu').css('display', 'block')
+        $('#header-icon-close').css('display', 'none')
+    })
+</script>
